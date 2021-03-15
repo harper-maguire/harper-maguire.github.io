@@ -6,36 +6,42 @@
 
 <script type="text/javascript">
 
-var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'bar',
+$.getJSON("some_data.json", function(data_from_file){
 
-    // The data for our dataset
-    data: {
-        labels: ['x', 'y'],
-        datasets: [{
-            label: 'Fake data',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [3,6],
-        }]
-    },
+    var ctx = document.getElementById('myChart').getContext('2d');
+    console.log("hey you got data")
+    console.log(data_from_file)
 
-    // Configuration options go here
-    options: {
-    scales: {
-            yAxes: [{
-                display: true,
-                stacked: true,
-                ticks: {
-                    min: 0, // minimum value
-                    max: 10 // maximum value
-                }
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'bar',
+
+        // The data for our dataset
+        data: {
+            labels: ['x', 'y'],
+            datasets: [{
+                label: 'Fake data',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [data_from_file["x"], data_from_file["y"]],
             }]
-        }
-    }
-});
+        },
 
+        // Configuration options go here
+        options: {
+        scales: {
+                yAxes: [{
+                    display: true,
+                    stacked: true,
+                    ticks: {
+                        min: 0, // minimum value
+                        max: 6100 // maximum value
+                    }
+                }]
+            }
+        }
+    });
+
+})
 
 </script>
