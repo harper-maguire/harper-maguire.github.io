@@ -1,0 +1,51 @@
+<canvas id="myChart"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+$.getJSON("some_other_data.json", function(data_from_file){
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    console.log("hey you got data")
+    console.log(data_from_file)
+
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'bar',
+
+        // The data for our dataset
+        data: {
+            labels: ['x', 'y'],
+            datasets: [{
+                label: 'Denver Police Activity in Novemeber',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [data_from_file["x"], data_from_file["y"]],
+            }]
+        },
+
+        // Configuration options go here
+        options: {
+        scales: {
+                yAxes: [{
+                    display: true,
+                    stacked: true,
+                    ticks: {
+                        min: 0, // minimum value
+                        max: 6000 // maximum value
+                    }
+                }]
+            }
+        }
+    });
+
+})
+
+</script>
+<h1>CHART IMPLICATIONS</h1>
+<p>According to the chart, Denver police are more likely to arrest pedestrian stops. Pedestrian stops may not be randomized, as officers often follow up on anonymous tips or suspicion of a crime. If a follow-up is necessary, it will make sense that pedestrian stops would be more likely to incline an arrest. Additionally, there is growing concern regarding the ethics of pedestrian stops. An individual who is elicited to pedestrian stops feels their rights are being violated, thus creating an emotional response that could lead to an arrest. With further research, I would be interested in assessing if racial bias exists in pedestrian stops? </p>
+<h1> PYTHON CODE</h1>
+<p>Here is the link to my <a href="https://harper-maguire.github.io/Maguire_WA8.ipynb">PYTHON CODE.</a> To filter and aggregate the data from the source “Denver Policing Data,” I iterated through the CSV file and created a counter using the enumerate method. After reading the file, I filtered the enumerated data to a list called “all data” using the append method. Then I created two counters called “arrest made” and “arrest not made.” To start, I set their values to 0 then iterated through the list called “all data.” I created an if statement to determine whether the element called “arrest made” was set to false or true. If false, my function adds one to the counter called “arrest made.” Otherwise, I added one to the counter called “arrest not made.” The AVERAGE number of pedestrian that ended with an arrest in Novemeber is 85%. </p>
