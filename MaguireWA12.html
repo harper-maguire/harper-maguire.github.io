@@ -1,1 +1,218 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Harper Maguire WA 12</title>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/reset.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/reveal.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/theme/moon.min.css" id="theme">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/highlight/monokai.min.css" id="highlight-theme">
+
+		<!-- Loading Vega-->
+		<script src="https://cdn.jsdelivr.net/npm/vega@5.19.1"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vega-lite@5.0.0"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.15.1"></script>
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section>
+					<h2>Harper Maguire WA 12</h2>
+
+				</section>
+				
+				
+				<section>
+						<h2>Customizing The Appearance of Visualizations</h2>
+						<h5>This visualization depicts the number of diseased individuals given a particular month. In January the number of diseased was greatest.</h5>
+						<div id="crimea-bars"></div>
+						<script type="text/javascript">
+						var spec = {
+							"width": 800,
+							"height": 200,
+							"data": {
+								"url": "https://vega.github.io/vega-datasets/data/crimea.json"
+							},
+							"mark": {
+								"type": "bar", 
+								"color": "pink"
+							},
+							"encoding": {
+								"x": {
+									"type": "temporal", 
+									"field": "date",
+									"title": "Date",
+									"axis":{
+										"titleFontSize": 15
+									}
+								},
+								"y": {
+									"field": "disease",
+									"type": "quantitative", 
+									"title": "Number of Diseased", 
+									"axis": {
+										"titleFontSize": 15,
+										
+									}
+								}
+							}
+						};
+						var opt = {"renderer": "canvas", "actions": false};
+						vegaEmbed("#crimea-bars", spec, opt);
+						</script>
+
+
+					</section>
+					<section>
+						<h5> The code below demonstrates how I created the visualization on the previous slide. </h5>
+					
+					<pre><code data-trim data-line-numbers=all><script type="text/template">
+						<div id="vis-area"></div>
+						<script type="text/javascript">
+						var spec = {
+							"width": 300,
+							"height": 200,
+							"data": {
+								"url": "https://vega.github.io/vega-datasets/data/co2-concentration.csv"
+							},
+							"mark": "area",
+							"encoding": {
+								"x": {
+									"type": "temporal", 
+									"field": "Date",
+								},
+								"y": {
+									"field": "CO2",
+									"type": "quantitative"
+								}
+							}
+						};
+						var opt = {"renderer": "canvas", "actions": false};
+						vegaEmbed("#vis-area", spec, opt);
+
+					</script>
+				</code>
+							
+				</section>
+					
+					<section>
+						<h2>Visualizations and Compositions</h2>
+
+						<div id="population-scatter"></div>
+						
+						<script type="text/javascript">
+						var spec = {
+							"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+							"data": {
+								"url": "https://vega.github.io/vega-datasets/data/population.json"
+							},
+							"width":800,
+							"height":400,
+							"config":{
+								"font":"Times New Roman"
+							},
+							"mark": "point",
+							"encoding": {
+								"x": {
+									"field": "year",
+									"type": "nominal",
+									
+								},
+								"y": {
+									"field": "people",
+									"type": "quantitative",
+									"scale": {"zero": false}
+								},
+								"color": {
+									"field": "age",
+									"type": "nominal"
+								},
+								"shape": {
+									"field": "sex",
+									"type": "nominal"
+								}
+							}	
+						};
+						var opt = {"renderer": "canvas", "actions": false};
+						vegaEmbed("#population-scatter", spec, opt);
+						</script>
+					<h5> This visualization illustrates population. Each point on the plot is colored and shaped based on the sex and age of the populations.You'll notice that younger ages tend to have the largest populations.</h5>
+					</section>
+				</section>
+				<section>
+					<h5>Here is how I created the last scatter plot.</h5>
+					<pre><code data-trim data-line-numbers=all><script type="text/template">
+						<div id="population-scatter"></div>
+						
+						<script type="text/javascript">
+						var spec = {
+							"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+							"data": {
+								"url": "https://vega.github.io/vega-datasets/data/population.json"
+							},
+							"width":800,
+							"height":400,
+							"config":{
+								"font":"Times New Roman"
+							},
+							"mark": "point",
+							"encoding": {
+								"x": {
+									"field": "year",
+									"type": "nominal",
+									
+								},
+								"y": {
+									"field": "people",
+									"type": "quantitative",
+									"scale": {"zero": false}
+								},
+								"color": {
+									"field": "age",
+									"type": "nominal"
+								},
+								"shape": {
+									"field": "sex",
+									"type": "nominal"
+								}
+							}	
+						};
+						var opt = {"renderer": "canvas", "actions": false};
+						vegaEmbed("#population-scatter", spec, opt);
+						</script>
+					
+					</script>
+				</code>
+				</section>
+
+				<section></section>
+
+						
+					
+
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/reveal.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/highlight/highlight.min.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				slideNumber: 'h/v',
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealHighlight ]
+			});
+		</script>
+	</body>
+</html>
 
